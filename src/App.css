@@ -63,3 +63,7 @@ textarea,
 select {
   font: inherit;
 }
+.test {
+  display: flex;
+  flex-direction: row;
+}

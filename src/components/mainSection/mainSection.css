@@ -1,0 +1,9 @@
+.mainSection {
+  margin-left: 30px; /*ToDO: Не забыть убрать */
+  background-color: aquamarine;
+  max-width: 773px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

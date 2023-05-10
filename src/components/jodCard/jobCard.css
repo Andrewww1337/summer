@@ -1,0 +1,70 @@
+.jobCardTopSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.jobCard {
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+.cardTitle {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5e96fc;
+}
+.jobCardMiddleSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12.5px;
+}
+.dot {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.salary {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+.schedule {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+.jobCardBottomSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+}
+.jobLocation {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #232134;
+}
+.location {
+  margin-right: 11.33px;
+}
+.favoriteButton {
+  direction: none;
+  border: none;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  padding: 0;
+  background-color: inherit;
+}

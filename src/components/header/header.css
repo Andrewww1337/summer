@@ -1,0 +1,38 @@
+.customHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  position: relative;
+  justify-content: center;
+  max-width: 1125px;
+  align-items: center;
+  height: 84px;
+}
+.header {
+  width: 100vw;
+  background-color: #ffffff;
+}
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 60px;
+}
+.linkToPage {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+.active {
+  color: #5e96fc;
+}
+.logo {
+  position: absolute;
+  left: 0px;
+}
+.headerLink {
+  white-space: nowrap;
+}

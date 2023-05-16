@@ -1,0 +1,1 @@
+export { SearchVacancyPage } from "./searchVacancyPage";

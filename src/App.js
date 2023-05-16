@@ -1,19 +1,19 @@
-import logo from "./logo.svg";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { Layout } from "./components/layout";
+
+import { MainPage } from "./pages/mainPage/mainPage";
+
 import "./App.css";
-import { Header } from "./components/header";
-import { SortingBar } from "./components/sortingBar";
-import { SearchPanel } from "./components/searchPanel";
-import { MainSection } from "./components/mainSection";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <div className="test">
-        <SortingBar /> <MainSection />
-      </div>
-
-      <SearchPanel />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Navigate to="/vacansy/search" />} />
+          <Route path="vacansy/:type" element={<MainPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

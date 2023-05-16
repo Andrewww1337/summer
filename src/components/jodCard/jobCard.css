@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
 .jobCard {
   padding: 24px;
   background-color: #ffffff;
@@ -16,11 +17,25 @@
   line-height: 24px;
   color: #5e96fc;
 }
+.cardTitle-big {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: #232134;
+}
 .jobCardMiddleSection {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 12.5px;
+}
+.jobCardMiddleSection-big {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16.5px;
 }
 .dot {
   margin-left: 12px;
@@ -34,6 +49,14 @@
   line-height: 20px;
   color: #232134;
 }
+.salary-big {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
 .schedule {
   font-family: "Inter";
   font-style: normal;
@@ -42,11 +65,25 @@
   line-height: 20px;
   color: #232134;
 }
+.schedule-big {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
 .jobCardBottomSection {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 13px;
+}
+.jobCardBottomSection-big {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16.5px;
 }
 .jobLocation {
   font-family: "Inter";
@@ -54,6 +91,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+  color: #232134;
+}
+.jobLocation-big {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
   color: #232134;
 }
 .location {

@@ -17,5 +17,5 @@
 }
 .mantine-Input-rightSection {
   width: 83px;
-  margin-right: 12px;
+  margin-right: 12px; /*ToDO: Пофиксить баг */
 }

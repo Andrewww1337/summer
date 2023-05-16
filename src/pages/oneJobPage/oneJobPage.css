@@ -1,0 +1,18 @@
+.oneJobPage {
+  background-color: #f7f7f8;
+}
+.jobPageMainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 773px;
+  width: 100%;
+  margin: 40px auto 0;
+}
+.jobDescription {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-radius: 12px;
+  background-color: #ffffff;
+}

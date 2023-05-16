@@ -1,14 +1,28 @@
-import "./mainSection.css";
-import React, { useEffect, useRef, useState, ReactElement } from "react";
-import { ReactComponent as Logo } from "../../img/Logo.svg";
+import React from "react";
+
 import { SearchPanel } from "../searchPanel";
 import { JobCard } from "../jodCard/jodCard";
 
-export const MainSection = () => {
+import "./mainSection.css";
+
+export const MainSection = ({
+  vacansies,
+  setKeyword,
+  setVacansies,
+  searchParams,
+  keyword,
+}) => {
   return (
     <div className="mainSection">
-      <SearchPanel />
-      <JobCard />
+      <SearchPanel
+        setVacansies={setVacansies}
+        searchParams={searchParams}
+        setKeyword={setKeyword}
+        keyword={keyword}
+      />
+      {vacansies?.data?.objects?.map((item) => (
+        <JobCard key={item.id} {...item} />
+      ))}
     </div>
   );
 };

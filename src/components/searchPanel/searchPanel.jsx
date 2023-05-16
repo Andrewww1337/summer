@@ -1,21 +1,37 @@
-import "./searchPanel.css";
-import React, { useEffect, useRef, useState, ReactElement } from "react";
-import { ReactComponent as Search } from "../../img/Search.svg";
-import { Select } from "@mantine/core";
-import { NumberInput } from "@mantine/core";
-import { Group, Button, rem } from "@mantine/core";
-import { Input, Tooltip } from "@mantine/core";
+import React from "react";
+import { Button, Input } from "@mantine/core";
 
-export const SearchPanel = () => {
+import { ReactComponent as Search } from "../../img/Search.svg";
+import { getVacancies } from "../../Api/fetches";
+
+import "./searchPanel.css";
+
+export const SearchPanel = ({
+  setKeyword,
+  keyword,
+  searchParams,
+  setVacansies,
+}) => {
   return (
     <div className="searchPanel">
       <Input
+        onChange={(e) => {
+          setKeyword(e.target.value);
+        }}
+        value={keyword}
         className="searchInput"
         icon={<Search size="1rem" />}
         placeholder="Введите название вакансии"
         rightSection={
           <div>
-            <Button className="searchButton">Поиск</Button>
+            <Button
+              onClick={async () => {
+                setVacansies(await getVacancies(searchParams));
+              }}
+              className="searchButton"
+            >
+              Поиск
+            </Button>
           </div>
         }
       />

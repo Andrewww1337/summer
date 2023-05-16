@@ -1,0 +1,1 @@
+export { OneJobPage } from "./oneJobPage";

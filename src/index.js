@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { MantineProvider } from "@mantine/core";
+import { HashRouter } from "react-router-dom";
+
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +16,9 @@ root.render(
       withGlobalStyles
       withNormalizeCSS
     >
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </MantineProvider>
   </React.StrictMode>
 );

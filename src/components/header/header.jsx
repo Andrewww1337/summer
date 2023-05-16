@@ -1,6 +1,7 @@
-import "./header.css";
-import React, { useEffect, useRef, useState, ReactElement } from "react";
+import React from "react";
 import { ReactComponent as Logo } from "../../img/Logo.svg";
+
+import "./header.css";
 
 export const Header = () => {
   return (

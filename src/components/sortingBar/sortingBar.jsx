@@ -20,17 +20,27 @@ export const SortingBar = ({
   setVacansies,
   searchParams,
   setKeyword,
+  activePage,
+  setPage,
 }) => {
   const [jodStateIsOpen, setJodStateIsOpen] = useState(false);
 
   const getData = async () => {
     setCatalogues(await getCatalogues());
   };
+
+  const getNewVacansies = async () => {
+    setVacansies(await getVacancies(searchParams));
+  };
+
   useEffect(() => {
     getData();
-    getVacancy(35276608);
-    console.log(catalogues);
+    getNewVacansies();
   }, []);
+
+  useEffect(() => {
+    getNewVacansies();
+  }, [activePage]);
 
   return (
     <div className="sortingBar">
@@ -91,7 +101,10 @@ export const SortingBar = ({
       </div>
       <div>
         <Button
-          onClick={async () => setVacansies(await getVacancies(searchParams))}
+          onClick={() => {
+            getNewVacansies();
+            setPage(1);
+          }}
           className="submitFilterButton"
         >
           Применить

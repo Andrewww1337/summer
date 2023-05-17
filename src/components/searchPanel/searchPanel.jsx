@@ -11,6 +11,7 @@ export const SearchPanel = ({
   keyword,
   searchParams,
   setVacansies,
+  setPage,
 }) => {
   return (
     <div className="searchPanel">
@@ -18,7 +19,7 @@ export const SearchPanel = ({
         onChange={(e) => {
           setKeyword(e.target.value);
         }}
-        value={keyword}
+        value={keyword ? keyword : ""}
         className="searchInput"
         icon={<Search size="1rem" />}
         placeholder="Введите название вакансии"
@@ -27,6 +28,7 @@ export const SearchPanel = ({
             <Button
               onClick={async () => {
                 setVacansies(await getVacancies(searchParams));
+                setPage(1);
               }}
               className="searchButton"
             >

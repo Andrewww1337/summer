@@ -22,8 +22,8 @@ export const SearchVacancyPage = () => {
     page: `${activePage - 1}`,
   };
   return (
-    <div className="mainPage">
-      <div className="test">
+    <div className="searchVacancyPage">
+      <div className="searchVacancySection">
         <SortingBar
           setCatalogues={setCatalogues}
           setPamentFromValue={setPamentFromValue}
@@ -37,6 +37,8 @@ export const SearchVacancyPage = () => {
           keyword={keyword}
           searchParams={searchParams}
           setKeyword={setKeyword}
+          activePage={activePage}
+          setPage={setPage}
         />
         <MainSection
           setVacansies={setVacansies}
@@ -44,17 +46,10 @@ export const SearchVacancyPage = () => {
           setKeyword={setKeyword}
           vacansies={vacansies}
           keyword={keyword}
+          activePage={activePage}
+          setPage={setPage}
         />
       </div>
-      <Pagination
-        value={activePage}
-        onChange={setPage}
-        total={
-          vacansies?.data?.total > 500
-            ? 125
-            : Math.ceil(vacansies?.data?.total / 4)
-        }
-      />
     </div>
   );
 };

@@ -1,4 +1,13 @@
-.test {
+.searchVacancySection {
   display: flex;
   flex-direction: row;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.searchVacancyPage {
+  max-width: 1116px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }

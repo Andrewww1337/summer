@@ -4,12 +4,12 @@
   margin: 0 auto;
   position: relative;
   justify-content: center;
-  max-width: 1125px;
+  max-width: 1116px;
   align-items: center;
   height: 84px;
 }
 .header {
-  width: 100vw;
+  width: 100%;
   background-color: #ffffff;
 }
 .navigation {
@@ -25,9 +25,16 @@
   font-size: 16px;
   line-height: 20px;
   color: #232134;
+  text-decoration: none;
 }
-.active {
+.linkToPage_active {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
   color: #5e96fc;
+  text-decoration: none;
 }
 .logo {
   position: absolute;

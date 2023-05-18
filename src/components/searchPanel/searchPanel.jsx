@@ -23,6 +23,7 @@ export const SearchPanel = ({
         className="searchInput"
         icon={<Search size="1rem" />}
         placeholder="Введите название вакансии"
+        styles={{ rightSection: { marginRight: "12px", width: "83px" } }}
         rightSection={
           <div>
             <Button

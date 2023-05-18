@@ -73,10 +73,12 @@ export const SortingBar = ({
             )
           }
           rightSectionWidth={30}
-          styles={{ rightSection: { pointerEvents: "none" } }}
+          styles={{ rightSection: { pointerEvents: "none", margin: "5px" } }}
           data={catalogues?.map((item) => ({
-            label: item.title_rus,
-            value: item.key,
+            label: `${item?.title_rus?.substr(0, 23)} ${
+              item?.title_rus?.length > 23 ? "..." : ""
+            }`,
+            value: item?.key,
           }))}
           onDropdownClose={() => {
             setJodStateIsOpen(false);
@@ -88,12 +90,14 @@ export const SortingBar = ({
       </div>
       <div className="selectSalary">
         <NumberInput
+          styles={{ rightSection: { marginRight: "5px" } }}
           onChange={setPamentFromValue}
           value={pamentFromValue}
           placeholder="От"
           label="Оклад"
         />
         <NumberInput
+          styles={{ rightSection: { marginRight: "5px" } }}
           value={pamentToValue}
           onChange={setPamentToValue}
           placeholder="До"
@@ -109,7 +113,6 @@ export const SortingBar = ({
         >
           Применить
         </Button>
-        <p>{cataloguesValue}</p>
       </div>
     </div>
   );

@@ -77,8 +77,23 @@ export const JobCard = ({
       </div>
       <div className={`jobCardMiddleSection${cardSize}`}>
         <p className={`salary${cardSize}`}>
-          з/п <span>{item.payment_from}</span>-<span>{item.payment_to}</span>{" "}
-          {item.currency}
+          з/п{" "}
+          {item.payment_from > 0 && item.payment_to > 0 && (
+            <span>
+              {item.payment_from} - {item.payment_to}
+            </span>
+          )}
+          {item.payment_from < 1 && item.payment_to < 1 && (
+            <span>Договорная</span>
+          )}
+          {item.payment_from > 0 && item.payment_to < 1 && (
+            <span>от {item.payment_from}</span>
+          )}
+          {item.payment_from < 1 && item.payment_to > 0 && (
+            <span>{item.payment_to}</span>
+          )}{" "}
+          {item.payment_from > 0 ||
+            (item.payment_to > 0 && <span> {item.currency}</span>)}
         </p>
         <Dot className="dot" />
         <p className={`schedule${cardSize}`}>Полный рабочий день</p>

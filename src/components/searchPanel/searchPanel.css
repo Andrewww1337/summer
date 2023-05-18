@@ -5,8 +5,8 @@
 .searchButton {
   padding: 0;
   margin: 0;
-  height: 32px;
   width: 83px;
+  height: 32px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -15,7 +15,6 @@
   align-items: center;
   color: #ffffff;
 }
-.mantine-Input-rightSection {
-  width: 83px;
-  margin-right: 12px; /*ToDO: Пофиксить баг */
+.searchPanel {
+  width: 100%;
 }

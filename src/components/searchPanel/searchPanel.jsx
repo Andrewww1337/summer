@@ -12,6 +12,7 @@ export const SearchPanel = ({
   searchParams,
   setVacansies,
   setPage,
+  windowDimenion,
 }) => {
   return (
     <div className="searchPanel">
@@ -22,7 +23,9 @@ export const SearchPanel = ({
         value={keyword ? keyword : ""}
         className="searchInput"
         icon={<Search size="1rem" />}
-        placeholder="Введите название вакансии"
+        placeholder={
+          windowDimenion.winWidth > 500 ? "Введите название вакансии" : "Поиск"
+        }
         styles={{ rightSection: { marginRight: "12px", width: "83px" } }}
         rightSection={
           <div>

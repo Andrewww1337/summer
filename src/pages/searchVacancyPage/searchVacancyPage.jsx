@@ -6,7 +6,7 @@ import { Pagination } from "@mantine/core";
 
 import "./searchVacancyPage.css";
 
-export const SearchVacancyPage = () => {
+export const SearchVacancyPage = ({ windowDimenion }) => {
   const [cataloguesValue, setCataloguesValue] = useState("");
   const [pamentFromValue, setPamentFromValue] = useState("");
   const [pamentToValue, setPamentToValue] = useState("");
@@ -23,24 +23,6 @@ export const SearchVacancyPage = () => {
     page: `${activePage - 1}`,
   };
 
-  const [windowDimenion, detectHW] = useState({
-    winWidth: window.innerWidth,
-    winHeight: window.innerHeight,
-  });
-
-  const detectSize = () => {
-    detectHW({
-      winWidth: window.innerWidth,
-      winHeight: window.innerHeight,
-    });
-  };
-  useEffect(() => {
-    window.addEventListener("resize", detectSize);
-
-    return () => {
-      window.removeEventListener("resize", detectSize);
-    };
-  }, [windowDimenion]);
   return (
     <div className="searchVacancyPage">
       <div className="searchVacancySection">

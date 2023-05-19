@@ -20,3 +20,9 @@
   flex-direction: row;
   align-items: center;
 }
+
+@media (max-width: 678px) {
+  .mantine-Pagination-dots {
+    display: none;
+  }
+}

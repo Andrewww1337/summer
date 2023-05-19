@@ -48,6 +48,7 @@ export const MainSection = ({
           />
         )}
         <SearchPanel
+          windowDimenion={windowDimenion}
           setVacansies={setVacansies}
           searchParams={searchParams}
           setKeyword={setKeyword}
@@ -63,6 +64,7 @@ export const MainSection = ({
       </div>
       {vacansies && (
         <Pagination
+          boundaries={windowDimenion.winWidth > 768 ? 1 : 0}
           className="pagination"
           value={activePage}
           onChange={setPage}

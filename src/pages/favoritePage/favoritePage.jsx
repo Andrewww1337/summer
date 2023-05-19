@@ -5,7 +5,7 @@ import "./favoritePage.css";
 import { JobCard } from "../../components/jodCard/jodCard";
 import { EmptyPage } from "../../components/emtpyPage/emptyPage";
 
-export const FavoritePage = () => {
+export const FavoritePage = ({ windowDimenion }) => {
   const [favoritePosts, setFavoritePosts] = useState();
   const [refreshPosts, setRefreshPosts] = useState(true);
   const [activePage, setPage] = useState(1);
@@ -36,6 +36,7 @@ export const FavoritePage = () => {
       {!!favoritePosts?.length && (
         <div className="pagination">
           <Pagination
+            boundaries={windowDimenion.winWidth > 768 ? 1 : 0}
             value={activePage}
             onChange={setPage}
             total={Math.ceil(favoritePosts?.length / 4)}

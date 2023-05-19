@@ -10,3 +10,8 @@
   display: flex;
   flex-direction: column;
 }
+@media (max-width: 768px) {
+  .favoritePageVacancies {
+    margin: 20px auto 0px;
+  }
+}

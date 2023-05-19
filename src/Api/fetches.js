@@ -1,4 +1,9 @@
+import { useState } from "react";
 import axios from "axios";
+
+function MyComponent() {
+  const [isLoading, setIsLoading] = useState(false);
+}
 
 const defaultURL = "https://startup-summer-2023-proxy.onrender.com/2.0/";
 const defaultHeaders = {
@@ -73,6 +78,7 @@ export const getVacancies = async (params) => {
       },
       params: searchParams,
     });
+
     return response;
   } catch (error) {
     return error.message;

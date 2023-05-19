@@ -18,7 +18,7 @@ export const EmptyPage = ({ mainPage }) => {
         to={`${mainPage ? "/vacansy/favorite/" : "/vacansy/search/"}`}
         className="linkOutEmptyPage"
       >
-        {`${mainPage ? "Избранные" : "Поиск Вакансии"}`}
+        {`${mainPage ? "Избранные" : "Поиск Вакансий"}`}
       </Link>
     </div>
   );

@@ -119,13 +119,40 @@
 }
 @media (max-width: 768px) {
   .jobCardMiddleSection {
-    display: flex;
     flex-direction: column;
     align-items: start;
     gap: 8px;
   }
 
-  .jobCardMiddleSection :nth-child(2) {
+  .jobCardMiddleSection-big {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
+  .dot {
     display: none;
+  }
+  .cardTitle {
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left;
+  }
+  .cardTitle-big {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .jobCardMiddleSection {
+    margin-top: 8px;
+  }
+  .jobCardMiddleSection-big {
+    margin-top: 8.5px;
+  }
+
+  .salary-big {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .schedule-big {
+    font-size: 18px;
   }
 }

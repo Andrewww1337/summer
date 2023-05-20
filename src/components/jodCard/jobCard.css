@@ -117,6 +117,9 @@
   background-color: inherit;
   margin-left: 15px;
 }
+.favoriteButton:hover .star {
+  stroke: #5e96fc;
+}
 @media (max-width: 768px) {
   .jobCardMiddleSection {
     flex-direction: column;

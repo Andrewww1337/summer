@@ -4,12 +4,10 @@ import { ReactComponent as ChevronDown } from "../../img/chevronDown.svg";
 import { ReactComponent as ChevronUp } from "../../img/chevronUp.svg";
 
 import { Select, NumberInput, Button } from "@mantine/core";
-import { getCatalogues, getVacancies, getVacancy } from "../../Api/fetches";
 
 import "./sortingBar.css";
 
 export const SortingBar = ({
-  setCatalogues,
   setPamentFromValue,
   setPamentToValue,
   setCataloguesValue,
@@ -17,30 +15,11 @@ export const SortingBar = ({
   pamentFromValue,
   pamentToValue,
   catalogues,
-  setVacansies,
-  searchParams,
   setKeyword,
-  activePage,
   setPage,
+  getNewVacansies,
 }) => {
   const [jodStateIsOpen, setJodStateIsOpen] = useState(false);
-
-  const getData = async () => {
-    setCatalogues(await getCatalogues());
-  };
-
-  const getNewVacansies = async () => {
-    setVacansies(await getVacancies(searchParams));
-  };
-
-  useEffect(() => {
-    getData();
-    getNewVacansies();
-  }, []);
-
-  useEffect(() => {
-    getNewVacansies();
-  }, [activePage]);
 
   return (
     <div className="sortingBar">
@@ -67,9 +46,9 @@ export const SortingBar = ({
           placeholder="Выберете отрасль"
           rightSection={
             jodStateIsOpen ? (
-              <ChevronUp size="1rem" />
+              <ChevronUp className="chevron" size="1rem" />
             ) : (
-              <ChevronDown size="1rem" />
+              <ChevronDown className="chevron" size="1rem" />
             )
           }
           rightSectionWidth={30}

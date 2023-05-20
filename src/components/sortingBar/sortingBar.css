@@ -54,6 +54,7 @@
   font-size: 20px;
   line-height: 20px;
   color: #232134;
+  margin-bottom: 32px;
 }
 .selectJob {
   text-align: left;
@@ -66,7 +67,6 @@
   line-height: 19px;
   color: #232134;
   margin-bottom: 8px;
-  margin-top: 32px;
 }
 .mantine-Select-input {
   height: 42px;
@@ -93,10 +93,25 @@
   margin-bottom: 8px;
   margin-top: 20px;
 }
+.selectJob :hover .chevron {
+  stroke: #3b7cd3;
+}
+.selectJob :active .chevron {
+  stroke: #5e96fc;
+}
+
 .mantine-NumberInput-control {
   border: none;
   outline: none;
   color: rgba(172, 173, 185, 1);
+}
+.mantine-NumberInput-control :hover {
+  stroke: #92c1ff;
+  background-color: transparent;
+}
+.mantine-NumberInput-control :active {
+  stroke: #5e96fc;
+  background-color: transparent;
 }
 .mantine-Button-root {
   background-color: #5e96fc;

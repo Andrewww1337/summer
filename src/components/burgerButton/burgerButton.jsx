@@ -4,7 +4,6 @@ import "./burgerButton.css";
 import { BurgerMenu } from "../burgerMenu";
 
 export const BurgerButton = ({
-  setCatalogues,
   setPamentFromValue,
   setPamentToValue,
   setCataloguesValue,
@@ -12,12 +11,9 @@ export const BurgerButton = ({
   pamentFromValue,
   pamentToValue,
   catalogues,
-  setVacansies,
-  searchParams,
   setKeyword,
-  activePage,
-  keyword,
   setPage,
+  getNewVacansies,
 }) => {
   const [menuActive, setMenuActive] = useState(false);
 
@@ -42,7 +38,7 @@ export const BurgerButton = ({
       </div>
 
       <BurgerMenu
-        setCatalogues={setCatalogues}
+        getNewVacansies={getNewVacansies}
         setPamentFromValue={setPamentFromValue}
         setPamentToValue={setPamentToValue}
         setCataloguesValue={setCataloguesValue}
@@ -50,11 +46,7 @@ export const BurgerButton = ({
         pamentFromValue={pamentFromValue}
         pamentToValue={pamentToValue}
         catalogues={catalogues}
-        setVacansies={setVacansies}
-        keyword={keyword}
-        searchParams={searchParams}
         setKeyword={setKeyword}
-        activePage={activePage}
         setPage={setPage}
         activ={menuActive}
         setActive={setMenuActive}

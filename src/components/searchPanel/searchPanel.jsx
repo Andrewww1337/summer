@@ -9,10 +9,9 @@ import "./searchPanel.css";
 export const SearchPanel = ({
   setKeyword,
   keyword,
-  searchParams,
-  setVacansies,
   setPage,
   windowDimenion,
+  getNewVacansies,
 }) => {
   return (
     <div className="searchPanel">
@@ -31,7 +30,7 @@ export const SearchPanel = ({
           <div>
             <Button
               onClick={async () => {
-                setVacansies(await getVacancies(searchParams));
+                getNewVacansies();
                 setPage(1);
               }}
               className="searchButton"

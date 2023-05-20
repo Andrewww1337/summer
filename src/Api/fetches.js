@@ -1,9 +1,4 @@
-import { useState } from "react";
 import axios from "axios";
-
-function MyComponent() {
-  const [isLoading, setIsLoading] = useState(false);
-}
 
 const defaultURL = "https://startup-summer-2023-proxy.onrender.com/2.0/";
 const defaultHeaders = {
@@ -11,7 +6,6 @@ const defaultHeaders = {
   "x-api-app-id":
     "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
 };
-const a = 12;
 const authParams = {
   login: "sergei.stralenia@gmail.com",
   password: "paralect123",
@@ -34,7 +28,7 @@ export const getCatalogues = async () => {
 
     return response.data;
   } catch (error) {
-    return error.message;
+    console.log(error.message);
   }
 };
 
@@ -50,10 +44,43 @@ export const getToken = async () => {
       "jwt",
       JSON.parse(response.request.response).access_token
     );
-    console.log(JSON.parse(response.request.response).access_token);
-    return response;
+
+    localStorage.setItem(
+      "refresh",
+      JSON.parse(response.request.response).refresh_token
+    );
+
+    return true;
   } catch (error) {
-    return error.message;
+    console.log(error.message);
+  }
+};
+export const getNewAccessToken = async () => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${defaultURL}oauth2/refresh_token/`,
+      headers: defaultHeaders,
+      params: {
+        refresh_token: `${localStorage.getItem("refresh")}`,
+        client_id: 2356,
+        client_secret:
+          "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
+      },
+    });
+    localStorage.setItem(
+      "newjwt",
+      JSON.parse(response.request.response).access_token
+    );
+
+    localStorage.setItem(
+      "newrefresh",
+      JSON.parse(response.request.response).refresh_token
+    );
+
+    return true;
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
@@ -81,7 +108,7 @@ export const getVacancies = async (params) => {
 
     return response;
   } catch (error) {
-    return error.message;
+    console.log(error.message);
   }
 };
 
@@ -98,6 +125,6 @@ export const getVacancy = async (id) => {
 
     return response.data;
   } catch (error) {
-    return error.message;
+    console.log(error.message);
   }
 };

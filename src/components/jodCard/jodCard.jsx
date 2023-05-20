@@ -72,7 +72,7 @@ export const JobCard = ({
           }}
           className="favoriteButton"
         >
-          {favorite ? <StarFull /> : <StarEmpty />}
+          {favorite ? <StarFull /> : <StarEmpty className="star" />}
         </button>
       </div>
       <div className={`jobCardMiddleSection${cardSize}`}>

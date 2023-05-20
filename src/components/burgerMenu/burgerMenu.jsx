@@ -4,7 +4,6 @@ import "./burgerMenu.css";
 import { SortingBar } from "../sortingBar";
 
 export const BurgerMenu = ({
-  setCatalogues,
   setPamentFromValue,
   setPamentToValue,
   setCataloguesValue,
@@ -12,14 +11,11 @@ export const BurgerMenu = ({
   pamentFromValue,
   pamentToValue,
   catalogues,
-  setVacansies,
-  searchParams,
   setKeyword,
-  activePage,
-  keyword,
   setPage,
   activ,
   setActive,
+  getNewVacansies,
 }) => {
   return (
     <div
@@ -31,7 +27,7 @@ export const BurgerMenu = ({
     >
       <div onClick={(e) => e.stopPropagation()} className="burgerContent">
         <SortingBar
-          setCatalogues={setCatalogues}
+          getNewVacansies={getNewVacansies}
           setPamentFromValue={setPamentFromValue}
           setPamentToValue={setPamentToValue}
           setCataloguesValue={setCataloguesValue}
@@ -39,11 +35,7 @@ export const BurgerMenu = ({
           pamentFromValue={pamentFromValue}
           pamentToValue={pamentToValue}
           catalogues={catalogues}
-          setVacansies={setVacansies}
-          keyword={keyword}
-          searchParams={searchParams}
           setKeyword={setKeyword}
-          activePage={activePage}
           setPage={setPage}
         />
       </div>

@@ -10,49 +10,41 @@ import { EmptyPage } from "../emtpyPage/emptyPage";
 
 export const MainSection = ({
   vacansies,
-  setCatalogues,
+
   setPamentFromValue,
   setPamentToValue,
   setCataloguesValue,
   cataloguesValue,
   pamentFromValue,
   pamentToValue,
-  catalogues,
-  setVacansies,
-  searchParams,
   setKeyword,
   activePage,
   setPage,
   keyword,
   windowDimenion,
+  getNewVacansies,
 }) => {
   return (
     <div className="mainSection">
       <div className="sortingPanel">
         {windowDimenion.winWidth < 769 && (
           <BurgerButton
-            setCatalogues={setCatalogues}
+            getNewVacansies={getNewVacansies}
             setPamentFromValue={setPamentFromValue}
             setPamentToValue={setPamentToValue}
             setCataloguesValue={setCataloguesValue}
             cataloguesValue={cataloguesValue}
             pamentFromValue={pamentFromValue}
             pamentToValue={pamentToValue}
-            catalogues={catalogues}
-            setVacansies={setVacansies}
-            keyword={keyword}
-            searchParams={searchParams}
             setKeyword={setKeyword}
-            activePage={activePage}
             setPage={setPage}
           />
         )}
         <SearchPanel
           windowDimenion={windowDimenion}
-          setVacansies={setVacansies}
-          searchParams={searchParams}
           setKeyword={setKeyword}
           keyword={keyword}
+          getNewVacansies={getNewVacansies}
           setPage={setPage}
         />
       </div>

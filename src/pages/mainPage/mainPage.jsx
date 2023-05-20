@@ -9,6 +9,11 @@ import "./mainPage.css";
 
 export const MainPage = () => {
   const { type } = useParams();
+  const [tokenAvailable, setTokenAvailable] = useState(false);
+
+  const getAvailableToken = async () => {
+    setTokenAvailable(await getToken());
+  };
 
   const [windowDimenion, detectHW] = useState({
     winWidth: window.innerWidth,
@@ -30,15 +35,23 @@ export const MainPage = () => {
   }, [windowDimenion]);
 
   useEffect(() => {
-    getToken();
+    if (!localStorage.getItem("jwt")) {
+      getAvailableToken();
+    } else {
+      setTokenAvailable(true);
+    }
   }, []);
+
   if (!localStorage.getItem("favorite")) {
     localStorage.setItem("favorite", "[]");
   }
   return (
     <div className="mainPage">
       {type === "search" && (
-        <SearchVacancyPage windowDimenion={windowDimenion} />
+        <SearchVacancyPage
+          token={tokenAvailable}
+          windowDimenion={windowDimenion}
+        />
       )}
       {type === "favorite" && <FavoritePage windowDimenion={windowDimenion} />}
     </div>

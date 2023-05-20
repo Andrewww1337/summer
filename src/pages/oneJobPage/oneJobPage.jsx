@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { useParams } from "react-router-dom";
 
-import { getCatalogues, getToken, getVacancy } from "../../Api/fetches";
+import { getVacancy } from "../../Api/fetches";
 import { JobCard } from "../../components/jodCard/jodCard";
 
 import "./oneJobPage.css";
@@ -18,7 +18,6 @@ export const OneJobPage = () => {
 
   useEffect(() => {
     getNewVacansy();
-    console.log(vacansy);
   }, []);
 
   return (

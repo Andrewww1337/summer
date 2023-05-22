@@ -36,7 +36,7 @@ export const OneJobPage = ({ tokenAvailable }) => {
       <div className="jobPageMainSection">
         <JobCard {...vacansy} bigCard={true} />
         <div className="jobDescription">
-          {ReactHtmlParser(vacansy.vacancyRichText)}
+          {ReactHtmlParser(vacansy?.vacancyRichText)}
         </div>
       </div>
     </div>

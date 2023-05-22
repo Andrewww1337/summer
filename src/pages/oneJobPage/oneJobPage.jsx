@@ -4,22 +4,33 @@ import { useParams } from "react-router-dom";
 
 import { getVacancy } from "../../Api/fetches";
 import { JobCard } from "../../components/jodCard/jodCard";
+import { Loader } from "../../components/loader";
 
 import "./oneJobPage.css";
 
-export const OneJobPage = () => {
+export const OneJobPage = ({ tokenAvailable }) => {
   const { id } = useParams();
-  const [catalog, setCatalog] = useState(null);
   const [vacansy, setVacansy] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getNewVacansy = async () => {
-    setVacansy(await getVacancy(id));
+    setLoading(true);
+    const result = getVacancy(id);
+    result.then((data) => {
+      setLoading(false);
+
+      setVacansy(data);
+    });
   };
 
   useEffect(() => {
-    getNewVacansy();
-  }, []);
-
+    if (tokenAvailable) {
+      getNewVacansy();
+    }
+  }, [tokenAvailable]);
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="oneJobPage">
       <div className="jobPageMainSection">

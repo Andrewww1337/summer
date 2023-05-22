@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { SortingBar } from "../../components/sortingBar";
 import { MainSection } from "../../components/mainSection";
+import { Loader } from "../../components/loader";
+
 import { getCatalogues, getVacancies } from "../../Api/fetches";
 
 import "./searchVacancyPage.css";
@@ -12,7 +14,7 @@ export const SearchVacancyPage = ({ windowDimenion, token }) => {
   const [pamentToValue, setPamentToValue] = useState("");
   const [keyword, setKeyword] = useState(null);
   const [catalogues, setCatalogues] = useState([]);
-  const [vacansies, setVacansies] = useState([]);
+  const [vacancies, setVacancies] = useState([]);
   const [activePage, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
@@ -25,28 +27,28 @@ export const SearchVacancyPage = ({ windowDimenion, token }) => {
   };
 
   const getData = async () => {
-    setCatalogues(await getCatalogues());
+    const result = await getCatalogues();
+    setCatalogues(result);
   };
 
-  const getNewVacansies = async () => {
+  const getNewVacancies = async (defaultParams) => {
     setLoading(true);
-    const result = getVacancies(searchParams);
+    const result = getVacancies(defaultParams ? defaultParams : searchParams);
     result.then((data) => {
       setLoading(false);
-      //TODO: передавать data.data.objects
-      setVacansies(data);
+      setVacancies(data);
     });
   };
 
   useEffect(() => {
     if (token) {
       getData();
-      getNewVacansies();
+      getNewVacancies();
     }
   }, [activePage, token]);
 
   if (loading) {
-    return <div>Loading.....</div>;
+    return <Loader />;
   }
 
   return (
@@ -54,7 +56,7 @@ export const SearchVacancyPage = ({ windowDimenion, token }) => {
       <div className="searchVacancySection">
         {windowDimenion.winWidth > 768 && (
           <SortingBar
-            getNewVacansies={getNewVacansies}
+            getNewVacancies={getNewVacancies}
             setPamentFromValue={setPamentFromValue}
             setPamentToValue={setPamentToValue}
             setCataloguesValue={setCataloguesValue}
@@ -67,7 +69,7 @@ export const SearchVacancyPage = ({ windowDimenion, token }) => {
           />
         )}
         <MainSection
-          getNewVacansies={getNewVacansies}
+          getNewVacancies={getNewVacancies}
           windowDimenion={windowDimenion}
           setPamentFromValue={setPamentFromValue}
           setPamentToValue={setPamentToValue}
@@ -79,7 +81,8 @@ export const SearchVacancyPage = ({ windowDimenion, token }) => {
           setKeyword={setKeyword}
           activePage={activePage}
           setPage={setPage}
-          vacansies={vacansies}
+          vacancies={vacancies}
+          catalogues={catalogues}
         />
       </div>
     </div>

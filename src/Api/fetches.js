@@ -15,23 +15,6 @@ const authParams = {
   hr: 0,
 };
 
-export const getCatalogues = async () => {
-  try {
-    const response = await axios({
-      method: "get",
-      url: `${defaultURL}catalogues/`,
-      headers: {
-        ...defaultHeaders,
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    });
-
-    return response.data;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
 export const getToken = async () => {
   try {
     const response = await axios({
@@ -49,6 +32,7 @@ export const getToken = async () => {
       "refresh",
       JSON.parse(response.request.response).refresh_token
     );
+    localStorage.setItem("ttl", JSON.parse(response.request.response).ttl);
 
     return true;
   } catch (error) {
@@ -68,34 +52,75 @@ export const getNewAccessToken = async () => {
           "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
       },
     });
+
     localStorage.setItem(
-      "newjwt",
+      "jwt",
       JSON.parse(response.request.response).access_token
     );
 
     localStorage.setItem(
-      "newrefresh",
+      "refresh",
       JSON.parse(response.request.response).refresh_token
     );
-
+    localStorage.setItem("ttl", JSON.parse(response.request.response).ttl);
     return true;
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const getVacancies = async (params) => {
+export const getFavorite = async () => {
+  if (localStorage.getItem("ttl")) {
+    if (Number(localStorage.getItem("ttl")) < Date.now() / 1000) {
+      await getNewAccessToken();
+    }
+  }
+  const vacancies = JSON.parse(localStorage.getItem("favorite"));
   try {
-    const searchParams = {
+    const response = await axios({
+      method: "get",
+      url: `${defaultURL}vacancies/`,
+      headers: defaultHeaders,
+      params: { ids: vacancies },
+    });
+
+    return response.data.objects;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getVacancies = async (params) => {
+  if (localStorage.getItem("ttl")) {
+    if (Number(localStorage.getItem("ttl")) < Date.now() / 1000) {
+      await getNewAccessToken();
+    }
+  }
+  try {
+    const { keyword, payment_from, payment_to, catalogues, page } = params;
+    const parsedParams = {
       published: 1,
-      keyword: params.keyword,
-      payment_from: params.payment_from,
-      payment_to: params.payment_to,
-      catalogues: params.catalogues,
       count: 4,
-      page: params.page,
-      no_agreement: params.payment_from || params.payment_to ? 1 : 0,
     };
+
+    if (keyword) {
+      parsedParams.keyword = keyword;
+    }
+    if (payment_from) {
+      parsedParams.payment_from = payment_from;
+    }
+    if (payment_to) {
+      parsedParams.payment_to = payment_to;
+    }
+    if (catalogues) {
+      parsedParams.catalogues = catalogues;
+    }
+    if (payment_to || payment_from) {
+      parsedParams.no_agreement = 1;
+    }
+    if (page) {
+      parsedParams.page = page;
+    }
     const response = await axios({
       method: "get",
       url: `${defaultURL}vacancies/`,
@@ -103,16 +128,42 @@ export const getVacancies = async (params) => {
         ...defaultHeaders,
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-      params: searchParams,
+      params: parsedParams,
     });
 
-    return response;
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const getCatalogues = async () => {
+  if (localStorage.getItem("ttl")) {
+    if (Number(localStorage.getItem("ttl")) < Date.now() / 1000) {
+      await getNewAccessToken();
+    }
+  }
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${defaultURL}catalogues/`,
+      headers: {
+        ...defaultHeaders,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+
+    return response.data;
   } catch (error) {
     console.log(error.message);
   }
 };
 
 export const getVacancy = async (id) => {
+  if (localStorage.getItem("ttl")) {
+    if (Number(localStorage.getItem("ttl")) < Date.now() / 1000) {
+      await getNewAccessToken();
+    }
+  }
   try {
     const response = await axios({
       method: "get",

@@ -1,16 +1,16 @@
 import React from "react";
+
 import { Pagination } from "@mantine/core";
 
 import { SearchPanel } from "../searchPanel";
 import { JobCard } from "../jodCard/jodCard";
 import { BurgerButton } from "../burgerButton";
-
-import "./mainSection.css";
 import { EmptyPage } from "../emtpyPage/emptyPage";
 
-export const MainSection = ({
-  vacansies,
+import "./mainSection.css";
 
+export const MainSection = ({
+  vacancies,
   setPamentFromValue,
   setPamentToValue,
   setCataloguesValue,
@@ -22,14 +22,15 @@ export const MainSection = ({
   setPage,
   keyword,
   windowDimenion,
-  getNewVacansies,
+  getNewVacancies,
+  catalogues,
 }) => {
   return (
     <div className="mainSection">
       <div className="sortingPanel">
         {windowDimenion.winWidth < 769 && (
           <BurgerButton
-            getNewVacansies={getNewVacansies}
+            getNewVacancies={getNewVacancies}
             setPamentFromValue={setPamentFromValue}
             setPamentToValue={setPamentToValue}
             setCataloguesValue={setCataloguesValue}
@@ -38,33 +39,30 @@ export const MainSection = ({
             pamentToValue={pamentToValue}
             setKeyword={setKeyword}
             setPage={setPage}
+            catalogues={catalogues}
           />
         )}
         <SearchPanel
           windowDimenion={windowDimenion}
           setKeyword={setKeyword}
           keyword={keyword}
-          getNewVacansies={getNewVacansies}
+          getNewVacancies={getNewVacancies}
           setPage={setPage}
         />
       </div>
       <div className="content">
-        {vacansies?.data?.objects?.map((item) => (
+        {vacancies?.objects?.map((item) => (
           <JobCard key={item.id} {...item} />
         ))}
-        {!vacansies?.data?.objects?.length && <EmptyPage mainPage={true} />}
+        {!vacancies?.objects?.length && <EmptyPage mainPage={true} />}
       </div>
-      {vacansies && (
+      {vacancies?.objects && (
         <Pagination
           boundaries={windowDimenion.winWidth > 768 ? 1 : 0}
           className="pagination"
           value={activePage}
           onChange={setPage}
-          total={
-            vacansies?.data?.total > 500
-              ? 125
-              : Math.ceil(vacansies?.data?.total / 4)
-          }
+          total={vacancies?.total > 500 ? 125 : Math.ceil(vacancies?.total / 4)}
         />
       )}
     </div>

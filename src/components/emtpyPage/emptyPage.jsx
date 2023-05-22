@@ -1,11 +1,10 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ReactComponent as Man } from "../../img/man.svg";
 
 import "./emptyPage.css";
 
 export const EmptyPage = ({ mainPage }) => {
-  const { type } = useParams();
   return (
     <div className={`emptyPage ${mainPage ? "ForMain" : "ForFavorite"}`}>
       <Man />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ReactComponent as Cross } from "../../img/Cross.svg";
 import { ReactComponent as ChevronDown } from "../../img/chevronDown.svg";
 import { ReactComponent as ChevronUp } from "../../img/chevronUp.svg";
@@ -17,7 +17,7 @@ export const SortingBar = ({
   catalogues,
   setKeyword,
   setPage,
-  getNewVacansies,
+  getNewVacancies,
 }) => {
   const [jodStateIsOpen, setJodStateIsOpen] = useState(false);
 
@@ -31,6 +31,14 @@ export const SortingBar = ({
             setPamentToValue("");
             setKeyword("");
             setCataloguesValue("");
+            setPage(1);
+            getNewVacancies({
+              keyword: "",
+              payment_from: "",
+              payment_to: "",
+              catalogues: "",
+              page: 0,
+            });
           }}
           className="resetFilterButton"
         >
@@ -38,35 +46,37 @@ export const SortingBar = ({
           <Cross className="crossButton" />
         </button>
       </div>
-      <div className="selectJob">
-        <Select
-          onChange={setCataloguesValue}
-          label="Отрасль"
-          value={cataloguesValue}
-          placeholder="Выберете отрасль"
-          rightSection={
-            jodStateIsOpen ? (
-              <ChevronUp className="chevron" size="1rem" />
-            ) : (
-              <ChevronDown className="chevron" size="1rem" />
-            )
-          }
-          rightSectionWidth={30}
-          styles={{ rightSection: { pointerEvents: "none", margin: "5px" } }}
-          data={catalogues?.map((item) => ({
-            label: `${item?.title_rus?.substr(0, 23)} ${
-              item?.title_rus?.length > 23 ? "..." : ""
-            }`,
-            value: item?.key,
-          }))}
-          onDropdownClose={() => {
-            setJodStateIsOpen(false);
-          }}
-          onDropdownOpen={() => {
-            setJodStateIsOpen(true);
-          }}
-        />
-      </div>
+      {catalogues && (
+        <div className="selectJob">
+          <Select
+            onChange={setCataloguesValue}
+            label="Отрасль"
+            value={cataloguesValue}
+            placeholder="Выберете отрасль"
+            rightSection={
+              jodStateIsOpen ? (
+                <ChevronUp className="chevron" size="1rem" />
+              ) : (
+                <ChevronDown className="chevron" size="1rem" />
+              )
+            }
+            rightSectionWidth={30}
+            styles={{ rightSection: { pointerEvents: "none", margin: "5px" } }}
+            data={catalogues?.map((item) => ({
+              label: `${item?.title_rus?.substr(0, 23)} ${
+                item?.title_rus?.length > 23 ? "..." : ""
+              }`,
+              value: item?.key,
+            }))}
+            onDropdownClose={() => {
+              setJodStateIsOpen(false);
+            }}
+            onDropdownOpen={() => {
+              setJodStateIsOpen(true);
+            }}
+          />
+        </div>
+      )}
       <div className="selectSalary">
         <NumberInput
           styles={{ rightSection: { marginRight: "5px" } }}
@@ -85,7 +95,7 @@ export const SortingBar = ({
       <div>
         <Button
           onClick={() => {
-            getNewVacansies();
+            getNewVacancies();
             setPage(1);
           }}
           className="submitFilterButton"

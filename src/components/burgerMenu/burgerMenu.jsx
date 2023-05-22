@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { SortingBar } from "../sortingBar";
 
 import "./burgerMenu.css";
-import { SortingBar } from "../sortingBar";
 
 export const BurgerMenu = ({
   setPamentFromValue,
@@ -15,7 +14,7 @@ export const BurgerMenu = ({
   setPage,
   activ,
   setActive,
-  getNewVacansies,
+  getNewVacancies,
 }) => {
   return (
     <div
@@ -27,7 +26,7 @@ export const BurgerMenu = ({
     >
       <div onClick={(e) => e.stopPropagation()} className="burgerContent">
         <SortingBar
-          getNewVacansies={getNewVacansies}
+          getNewVacancies={getNewVacancies}
           setPamentFromValue={setPamentFromValue}
           setPamentToValue={setPamentToValue}
           setCataloguesValue={setCataloguesValue}

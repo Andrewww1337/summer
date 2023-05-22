@@ -12,6 +12,7 @@ export const JobCard = ({
   setRefreshPosts,
   refreshPosts,
   isFavorite,
+  getFavorites,
   bigCard,
   ...item
 }) => {
@@ -21,8 +22,8 @@ export const JobCard = ({
 
   useEffect(() => {
     if (
-      JSON.parse(localStorage.getItem("favorite")).some(
-        (vacansy) => vacansy.id === item.id
+      JSON.parse(localStorage.getItem("favorite"))?.some(
+        (vacansy) => vacansy === item.id
       )
     ) {
       setFavorite(true);
@@ -35,30 +36,29 @@ export const JobCard = ({
     }
   }, [bigCard]);
 
-  useEffect(() => {
+  const getUpageFavorite = () => {
     if (isFavorite) {
-      setRefreshPosts(!refreshPosts);
+      getFavorites();
     }
-  }, [favorite]);
+  };
 
   const onClickFavoriteButton = () => {
     setFavorite(!favorite);
     if (
-      !JSON.parse(localStorage.getItem("favorite")).some(
-        (vacansy) => vacansy.id === item.id
+      !JSON.parse(localStorage.getItem("favorite"))?.some(
+        (vacansy) => vacansy === item.id
       )
     ) {
       const favoriteDate = JSON.parse(localStorage.getItem("favorite"));
-      favoriteDate.push(item);
+      favoriteDate.push(item.id);
       localStorage.setItem("favorite", JSON.stringify(favoriteDate));
-      console.log("rrr");
     } else {
-      const vacansies = JSON.parse(localStorage.getItem("favorite"));
-      const findRemovableVacansy = vacansies.findIndex(
-        (vacansy) => vacansy.id === item.id
+      const vacancies = JSON.parse(localStorage.getItem("favorite"));
+      const findRemovableVacansy = vacancies.findIndex(
+        (vacansy) => vacansy === item.id
       );
-      vacansies.splice(findRemovableVacansy, 1);
-      localStorage.setItem("favorite", JSON.stringify(vacansies));
+      vacancies.splice(findRemovableVacansy, 1);
+      localStorage.setItem("favorite", JSON.stringify(vacancies));
     }
   };
   return (
@@ -69,6 +69,7 @@ export const JobCard = ({
           onClick={(event) => {
             event.preventDefault();
             onClickFavoriteButton();
+            getUpageFavorite();
           }}
           className="favoriteButton"
         >
@@ -96,7 +97,7 @@ export const JobCard = ({
             (item.payment_to > 0 && <span> {item.currency}</span>)}
         </p>
         <Dot className="dot" />
-        <p className={`schedule${cardSize}`}>Полный рабочий день</p>
+        <p className={`schedule${cardSize}`}>{item?.type_of_work?.title}</p>
       </div>
       <div className={`jobCardBottomSection${cardSize}`}>
         <Location className="location" />

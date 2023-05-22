@@ -3,17 +3,11 @@ import { useParams } from "react-router-dom";
 
 import { SearchVacancyPage } from "../searchVacancyPage";
 import { FavoritePage } from "../favoritePage";
-import { getToken } from "../../Api/fetches";
 
 import "./mainPage.css";
 
-export const MainPage = () => {
+export const MainPage = ({ tokenAvailable }) => {
   const { type } = useParams();
-  const [tokenAvailable, setTokenAvailable] = useState(false);
-
-  const getAvailableToken = async () => {
-    setTokenAvailable(await getToken());
-  };
 
   const [windowDimenion, detectHW] = useState({
     winWidth: window.innerWidth,
@@ -34,17 +28,6 @@ export const MainPage = () => {
     };
   }, [windowDimenion]);
 
-  useEffect(() => {
-    if (!localStorage.getItem("jwt")) {
-      getAvailableToken();
-    } else {
-      setTokenAvailable(true);
-    }
-  }, []);
-
-  if (!localStorage.getItem("favorite")) {
-    localStorage.setItem("favorite", "[]");
-  }
   return (
     <div className="mainPage">
       {type === "search" && (
@@ -53,7 +36,9 @@ export const MainPage = () => {
           windowDimenion={windowDimenion}
         />
       )}
-      {type === "favorite" && <FavoritePage windowDimenion={windowDimenion} />}
+      {type === "favorite" && (
+        <FavoritePage token={tokenAvailable} windowDimenion={windowDimenion} />
+      )}
     </div>
   );
 };

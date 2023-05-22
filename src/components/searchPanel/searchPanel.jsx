@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Input } from "@mantine/core";
 
 import { ReactComponent as Search } from "../../img/Search.svg";
-import { getVacancies } from "../../Api/fetches";
 
 import "./searchPanel.css";
 
@@ -11,7 +10,7 @@ export const SearchPanel = ({
   keyword,
   setPage,
   windowDimenion,
-  getNewVacansies,
+  getNewVacancies,
 }) => {
   return (
     <div className="searchPanel">
@@ -30,7 +29,7 @@ export const SearchPanel = ({
           <div>
             <Button
               onClick={async () => {
-                getNewVacansies();
+                getNewVacancies();
                 setPage(1);
               }}
               className="searchButton"

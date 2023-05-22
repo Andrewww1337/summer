@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { BurgerMenu } from "../burgerMenu";
 
 import "./burgerButton.css";
-import { BurgerMenu } from "../burgerMenu";
 
 export const BurgerButton = ({
   setPamentFromValue,
@@ -13,7 +13,7 @@ export const BurgerButton = ({
   catalogues,
   setKeyword,
   setPage,
-  getNewVacansies,
+  getNewVacancies,
 }) => {
   const [menuActive, setMenuActive] = useState(false);
 
@@ -38,7 +38,7 @@ export const BurgerButton = ({
       </div>
 
       <BurgerMenu
-        getNewVacansies={getNewVacansies}
+        getNewVacancies={getNewVacancies}
         setPamentFromValue={setPamentFromValue}
         setPamentToValue={setPamentToValue}
         setCataloguesValue={setCataloguesValue}

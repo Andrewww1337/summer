@@ -48,7 +48,7 @@ export const Header = () => {
               type === "favorite" ? "linkToPage_active" : "linkToPage"
             }`}
           >
-            Избранные
+            Избранное
           </Link>
         </div>
       </div>

@@ -15,6 +15,7 @@ export const SearchPanel = ({
   return (
     <div className="searchPanel">
       <Input
+        data-elem="search-input"
         onChange={(e) => {
           setKeyword(e.target.value);
         }}
@@ -28,6 +29,7 @@ export const SearchPanel = ({
         rightSection={
           <div>
             <Button
+              data-elem="search-button"
               onClick={async () => {
                 getNewVacancies();
                 setPage(1);

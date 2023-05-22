@@ -49,6 +49,7 @@ export const SortingBar = ({
       {catalogues && (
         <div className="selectJob">
           <Select
+            data-elem="industry-select"
             onChange={setCataloguesValue}
             label="Отрасль"
             value={cataloguesValue}
@@ -79,6 +80,7 @@ export const SortingBar = ({
       )}
       <div className="selectSalary">
         <NumberInput
+          data-elem="salary-from-input"
           styles={{ rightSection: { marginRight: "5px" } }}
           onChange={setPamentFromValue}
           value={pamentFromValue}
@@ -86,6 +88,7 @@ export const SortingBar = ({
           label="Оклад"
         />
         <NumberInput
+          data-elem="salary-to-input"
           styles={{ rightSection: { marginRight: "5px" } }}
           value={pamentToValue}
           onChange={setPamentToValue}
@@ -94,6 +97,7 @@ export const SortingBar = ({
       </div>
       <div>
         <Button
+          data-elem="search-button"
           onClick={() => {
             getNewVacancies();
             setPage(1);

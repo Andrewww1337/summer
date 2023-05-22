@@ -62,10 +62,15 @@ export const JobCard = ({
     }
   };
   return (
-    <Link to={`/vacansy/${type}/${item.id}`} className="jobCard">
+    <Link
+      data-elem={`vacancy-${item.id}`}
+      to={`/vacansy/${type}/${item.id}`}
+      className="jobCard"
+    >
       <div className="jobCardTopSection">
         <h3 className={`cardTitle${cardSize}`}>{item.profession}</h3>
         <button
+          data-elem={`vacancy-${item.id}-shortlist-button`}
           onClick={(event) => {
             event.preventDefault();
             onClickFavoriteButton();
